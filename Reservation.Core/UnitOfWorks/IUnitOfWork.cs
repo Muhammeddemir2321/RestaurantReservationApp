@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Reservation.Core.Repositories
+namespace Reservation.Core.UnitOfWorks
 {
-    public interface IReservationRepository:IGenericRepository<Models.Reservation>
+    public interface IUnitOfWork
     {
+        Task CommitAsync();
+        void Commit();
     }
 }

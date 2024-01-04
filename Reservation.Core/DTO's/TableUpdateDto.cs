@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Reservation.Core.DTO_s
 {
-    internal class TableUpdateDto
+    public class TableUpdateDto
     {
     }
 }

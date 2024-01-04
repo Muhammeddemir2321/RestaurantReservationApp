@@ -1,49 +1,86 @@
-﻿using Reservation.Core.Services;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Reservation.Core.Repositories;
+using Reservation.Core.Services;
+using Reservation.Core.UnitOfWorks;
 using Reservation.Shared.DTO_s;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Reservation.Service.Services
 {
-    public class GenericService<Tentity, TDto> : IGenericService<Tentity, TDto> where Tentity : class where TDto : class
+    public class GenericService<TEntity, TDto> : IGenericService<TEntity, TDto> where TEntity : class where TDto : class
     {
-        public Task<ResponseDto<TDto>> AddAsync(TDto dto)
+        private readonly IGenericRepository<TEntity> _repository;
+        protected readonly IMapper _mapper;
+        protected readonly IUnitOfWork _unitOfWork;
+
+        public GenericService(IGenericRepository<TEntity> repository, IMapper mapper, IUnitOfWork unitOfWork)
         {
-            throw new NotImplementedException();
+            _repository = repository;
+            _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
 
-        public Task<ResponseDto<IEnumerable<TDto>>> AddRangeAsync(IEnumerable<TDto> dtos)
+        public async Task<ResponseDto<TDto>> AddAsync(TDto dto)
         {
-            throw new NotImplementedException();
+            var newEntity = _mapper.Map<TEntity>(dto);
+            await _repository.AddAsync(newEntity);
+            await _unitOfWork.CommitAsync();
+            var newDto = _mapper.Map<TDto>(newEntity);
+            return ResponseDto<TDto>.Succes(newDto, StatusCodes.Status201Created);
         }
 
-        public Task<ResponseDto<IEnumerable<TDto>>> GetAllAsync()
+        public async Task<ResponseDto<IEnumerable<TDto>>> AddRangeAsync(IEnumerable<TDto> dtos)
         {
-            throw new NotImplementedException();
+            var newEntities = _mapper.Map<IEnumerable<TEntity>>(dtos);
+            await _repository.AddRangeAsync(newEntities);
+            await _unitOfWork.CommitAsync();
+            var newDtos = _mapper.Map<List<TDto>>(newEntities);
+            return ResponseDto<IEnumerable<TDto>>.Succes(newDtos, StatusCodes.Status201Created);
         }
 
-        public Task<ResponseDto<TDto>> GetByIdAsync(int id)
+        public async Task<ResponseDto<IEnumerable<TDto>>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var entities = await _repository.GetAll().ToListAsync();
+            var dto = _mapper.Map<List<TDto>>(entities);
+            return ResponseDto<IEnumerable<TDto>>.Succes(dto, StatusCodes.Status200OK);
         }
 
-        public Task<ResponseDto<NoContent>> RemoveAsync(int id)
+        public async Task<ResponseDto<TDto>> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var entity = await _repository.GetByIdAsync(id);
+            if (entity == null)
+                return ResponseDto<TDto>.Fail("not found id", StatusCodes.Status404NotFound, true);
+            var dto = _mapper.Map<TDto>(entity);
+            return ResponseDto<TDto>.Succes(dto, StatusCodes.Status200OK);
         }
 
-        public Task<ResponseDto<NoContent>> RemoveRangeAsync(IEnumerable<int> ids)
+        public async Task<ResponseDto<NoContent>> RemoveAsync(int id)
         {
-            throw new NotImplementedException();
+            var entity = await _repository.GetByIdAsync(id);
+            if (entity == null)
+                return ResponseDto<NoContent>.Fail("not found id", StatusCodes.Status404NotFound, true);
+            _repository.Remove(entity);
+            await _unitOfWork.CommitAsync();
+            return ResponseDto<NoContent>.Succes(StatusCodes.Status204NoContent);
         }
 
-        public Task<ResponseDto<NoContent>> UpdateAsync(TDto dto)
+        public async Task<ResponseDto<NoContent>> RemoveRangeAsync(IEnumerable<int> ids)
         {
-            throw new NotImplementedException();
+            var entities = await _repository.GetByIdsAsync(ids);
+            if (entities == null)
+                return ResponseDto<NoContent>.Fail("not found id", StatusCodes.Status404NotFound, true);
+            _repository.Remove(entities);
+            await _unitOfWork.CommitAsync();
+            return ResponseDto<NoContent>.Succes(StatusCodes.Status204NoContent);
+        }
+
+        public async Task<ResponseDto<NoContent>> UpdateAsync(TDto dto)
+        {
+            var newEntity = _mapper.Map<TEntity>(dto);
+            _repository.Update(newEntity);
+            await _unitOfWork.CommitAsync();
+            return ResponseDto<NoContent>.Succes(StatusCodes.Status204NoContent);
         }
     }
 }

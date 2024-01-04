@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Reservation.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace Reservation.Repository
 
         }
 
+        public DbSet<Core.Models.Reservation> Reservations { get; set; }
+        public DbSet<Table> Tables { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

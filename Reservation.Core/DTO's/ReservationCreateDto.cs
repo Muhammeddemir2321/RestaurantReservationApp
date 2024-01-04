@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Reservation.Core.Repositories
+namespace Reservation.Core.DTO_s
 {
-    public interface IReservationRepository:IGenericRepository<Models.Reservation>
+    public class ReservationCreateDto
     {
     }
 }
