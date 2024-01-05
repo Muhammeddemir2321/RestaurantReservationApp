@@ -9,9 +9,6 @@ namespace Reservation.Repository.Repositories
         {
         }
 
-        public Task<Core.Models.Reservation> MakeReservation(Core.Models.Reservation reservation)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }
