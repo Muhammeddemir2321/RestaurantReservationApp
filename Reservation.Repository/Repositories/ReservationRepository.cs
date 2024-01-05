@@ -8,5 +8,10 @@ namespace Reservation.Repository.Repositories
         public ReservationRepository(AppDbContext context) : base(context)
         {
         }
+
+        public Task<Core.Models.Reservation> MakeReservation(Core.Models.Reservation reservation)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

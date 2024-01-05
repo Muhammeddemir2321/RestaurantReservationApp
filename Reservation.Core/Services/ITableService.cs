@@ -11,6 +11,8 @@ namespace Reservation.Core.Services
 {
     public interface ITableService:IGenericService<Table,TableDto>
     {
-        Task<ResponseDto<List<TableDto>>> AvailableTablesAsync();
+        Task<ResponseDto<List<TableDto>>> AvailableTablesAsync(TableCheckDto tableCheckDto);
+
+        Task<ResponseDto<TableDto>> AddAsync(TableCreateDto dto);
     }
 }

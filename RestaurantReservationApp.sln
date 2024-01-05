@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reservation.Core", "Reservation.Core\Reservation.Core.csproj", "{97164723-7F63-436D-93E1-24256DE61E97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reservation.Core", "Reservation.Core\Reservation.Core.csproj", "{97164723-7F63-436D-93E1-24256DE61E97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reservation.Repository", "Reservation.Repository\Reservation.Repository.csproj", "{B66C675E-68DE-4135-A0E7-F110AA1633C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reservation.Repository", "Reservation.Repository\Reservation.Repository.csproj", "{B66C675E-68DE-4135-A0E7-F110AA1633C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reservation.Service", "Reservation.Service\Reservation.Service.csproj", "{E62C3AF4-FFFA-4205-B733-A1A8CDAC19FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reservation.Service", "Reservation.Service\Reservation.Service.csproj", "{E62C3AF4-FFFA-4205-B733-A1A8CDAC19FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reservation.Shared", "Reservation.Shared\Reservation.Shared.csproj", "{0874295E-6416-4F84-80E6-98C641143557}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reservation.Shared", "Reservation.Shared\Reservation.Shared.csproj", "{0874295E-6416-4F84-80E6-98C641143557}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reservation.API", "Reservation.API\Reservation.API.csproj", "{BC846B1E-BF4D-42AB-BE53-A1B38E30544C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{0874295E-6416-4F84-80E6-98C641143557}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0874295E-6416-4F84-80E6-98C641143557}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0874295E-6416-4F84-80E6-98C641143557}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC846B1E-BF4D-42AB-BE53-A1B38E30544C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC846B1E-BF4D-42AB-BE53-A1B38E30544C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC846B1E-BF4D-42AB-BE53-A1B38E30544C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC846B1E-BF4D-42AB-BE53-A1B38E30544C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

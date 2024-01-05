@@ -14,6 +14,11 @@ namespace Reservation.Service.Mapping
         public MapProfile()
         {
             CreateMap<Table,TableDto>().ReverseMap();
+            CreateMap<Table,TableCreateDto>().ReverseMap();
+            CreateMap<Table,TableUpdateDto>().ReverseMap();
+            CreateMap<Core.Models.Reservation,ReservationDto>().ReverseMap();
+            CreateMap<Core.Models.Reservation,ReservationCreateDto>().ReverseMap();
+            CreateMap<Core.Models.Reservation,ReservationUpdateDto>().ReverseMap();
         }
     }
 }

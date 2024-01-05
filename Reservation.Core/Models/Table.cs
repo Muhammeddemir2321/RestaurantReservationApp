@@ -10,6 +10,6 @@ namespace Reservation.Core.Models
     {
         public int Number { get; set; }
         public int Capacity { get; set; }
-        public bool Status { get; set; }
+        public bool IsActive { get; set; }
     }
 }

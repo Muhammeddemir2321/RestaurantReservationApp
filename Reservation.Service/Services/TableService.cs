@@ -17,11 +17,20 @@ namespace Reservation.Service.Services
             _tableRepository = tableRepository;
         }
 
-        public async Task<ResponseDto<List<TableDto>>> AvailableTablesAsync()
+        public async Task<ResponseDto<List<TableDto>>> AvailableTablesAsync(TableCheckDto tableCheckDto)
         {
-            List<Table> availableTables = await _tableRepository.AvailableTablesAsync();
+            List<Table> availableTables = await _tableRepository.AvailableTablesAsync(tableCheckDto);
             List<TableDto> availableTablesDto = _mapper.Map<List<TableDto>>(availableTables);
             return ResponseDto<List<TableDto>>.Succes(availableTablesDto, StatusCodes.Status200OK);
+        }
+
+        public async Task<ResponseDto<TableDto>> AddAsync(TableCreateDto dto)
+        {
+            var newEntity = _mapper.Map<Table>(dto);
+            await _tableRepository.AddAsync(newEntity);
+            await _unitOfWork.CommitAsync();
+            var newDto = _mapper.Map<TableDto>(newEntity);
+            return ResponseDto<TableDto>.Succes(newDto, StatusCodes.Status201Created);
         }
     }
 }

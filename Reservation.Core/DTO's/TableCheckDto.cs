@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace Reservation.Core.DTO_s
 {
-    public class TableUpdateDto
+    public class TableCheckDto
     {
-        public int Id { get; set; }
-        public int Number { get; set; }
         public int Capacity { get; set; }
-        public bool IsActive { get; set; }
+        public DateTime ReservationDate { get; set; }
     }
 }

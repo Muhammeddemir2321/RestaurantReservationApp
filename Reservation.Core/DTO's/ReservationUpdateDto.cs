@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Reservation.Core.DTO_s
 {
-    public class ReservationDto
+    public class ReservationUpdateDto
     {
+        public int Id { get; set; }
         public string? CustomerName { get; set; }
         public string? CustomerEmail { get; set; }
         public string? CustomerPhone { get; set; }
