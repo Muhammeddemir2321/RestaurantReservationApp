@@ -10,6 +10,6 @@ namespace Reservation.Core.Repositories
 {
     public interface IReservationRepository:IGenericRepository<Models.Reservation>
     {
-        Task<Models.Reservation> MakeReservation(Models.Reservation reservation);
+       
     }
 }
