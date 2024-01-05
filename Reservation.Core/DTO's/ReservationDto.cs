@@ -8,6 +8,7 @@ namespace Reservation.Core.DTO_s
 {
     public class ReservationDto
     {
+        public int id {get; set ; }
         public string? CustomerName { get; set; }
         public string? CustomerEmail { get; set; }
         public string? CustomerPhone { get; set; }
