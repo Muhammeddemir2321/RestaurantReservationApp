@@ -20,7 +20,7 @@ namespace Reservation.Repository.Repositories
                                 .Select(r => r.TableNumber).ToListAsync();
 
             List<Table> availabletables = await _context.Tables.Where(i => i.IsActive && i.Capacity > tableCheckDto.Capacity && reservedTableNumbers.Contains(i.Number)).ToListAsync();
-
+            // IsActive masanın müsait olup olmadığı durum değil de herhangi bir aksaklıktan kaynaklı kullanılmama durumudur.
             return availabletables;
 
         }
